@@ -2,48 +2,139 @@
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
-  <title>Zane LeBlanc</title>
+  <title>👾 Zane LeBlanc</title>
   <link rel='stylesheet' href='styles.css'/>
-  <!--Fonts go here -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-
+</head>
 
 <body>
-  <header>
-    <div class='menu'>
-      <h1 id="indexLink"><a href='index.html'>ZL</a></h1>
-      <div class='links'>
-        
-        <a href='projects.html' class='headertext'>Projects</a>
-        <a href='hobbies.html' class='headertext'>About Me</a>
+  <div class="card">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-text">
+        <div class="hero-label">// hello! I'm</div>
+        <div class="hero-name">Zane LeBlanc</div>
+        <div class="hero-typing" id="typing-el"><span class="cursor"></span></div>
+        <p class="hero-bio">
+          Software developer based in Dallas, TX. UT Dallas alum with experience in the HR software industry.
+          I care about writing clean, purposeful code and building things that are actually useful.
+          <br><br>
+          Outside of work I'm probably cooking something new, skateboarding, playing through a game, or noodling on the piano.
+        </p>
+      </div>
+      <img class="hero-photo" src="images/1.png" alt="Zane LeBlanc">
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <div class="section-label">// projects</div>
+      <div class="project-buttons">
+        <button class="project-btn" onclick="showProject(this, 'budgeting')">Personal Budgeting App</button>
+        <button class="project-btn" onclick="showProject(this, 'parking')">Visitor Parking Bot</button>
+        <button class="project-btn" onclick="showProject(this, 'ml')">ML Intrusion Detection</button>
+        <button class="project-btn" onclick="showProject(this, 'comet')">Comet Dash</button>
       </div>
 
+      <div id="project-budgeting" class="project-detail">
+        <h2>Picnic Money</h2>
+        <p>Built a full-stack budgeting app using React, TypeScript, and Tailwind on the frontend with a Java Spring Boot REST API and PostgreSQL 
+          database on the backend. Deployed on AWS (EC2, S3, CloudFront) with a custom domain, implementing envelope-based budget tracking with real-time balance updates and transaction history.</p>
+        <a href="https://picnicmoney.app" target="_blank" rel="noopener noreferrer">picnicmoney.app</a>
+        <div class="project-images">
+          <img src="images/screenshot-1.png">
+          <img src="images/screenshot-2.png">
+          <img src="images/screenshot-4.png">
+        </div>
+      </div>
+      <div id="project-parking" class="project-detail">
+        <h2>Automated Visitor Parking Registration</h2>
+        <p>Automated a multi-page web form registration process using Python and Playwright, triggered via Telegram Bot API from mobile to Raspberry Pi, eliminating around 30 minutes per month of manual effort. Deployed as a persistent background service using Systemd, demonstrating end-to-end ownership from scripting through production deployment.</p>
+      </div>
+      <div id="project-ml" class="project-detail">
+        <h2>ML Intrusion Detection Research Tool</h2>
+        <p>Built a responsive React/JavaScript UI enabling researchers to experiment with 3 ML backend models, with run filtering, parameter adjustment, and intuitive result comparison. Led a major frontend refactor utilizing Figma, Git, and Postman to adapt the interface to an evolving multi-model backend architecture without disrupting team workflows.</p>
+      </div>
+      <div id="project-comet" class="project-detail">
+        <h2>Comet Dash</h2>
+        <p>Collaborated in a team of 5 to design and develop a Unity endless runner game, writing game mechanics in C# and coordinating code across contributors via Git. Presented and demoed the finished project to the class, with full project documentation delivered as a final report.</p>
+      </div>
     </div>
-  </header>
 
-  <div class='homePage'>
-   
+    <!-- Contact -->
+    <div class="contact">
+      <a href="mailto:Zane.M.LeBlanc@gmail.com">Zane.M.LeBlanc@gmail.com</a>
+      <a href="https://www.linkedin.com/in/zane-leblanc/" target="_blank" rel="noopener noreferrer">linkedin.com/in/zane-leblanc/</a>
+      <a href="https://github.com/ZaneLeBlanc" target="_blank" rel="noopener noreferrer">github.com/ZaneLeBlanc</a>
+    </div>
+
   </div>
 
-  <div class='footer'>
-    <h3>
-      <a href="mailto:Zane.M.LeBlanc@gmail.com">
-        Zane.M.LeBlanc@gmail.com
-      </a>
-    </h3>
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="">
+  </div>
 
-    <h3>
-      <a href="https://www.linkedin.com/in/zane-leblanc/" target="_blank" rel="noopener noreferrer">
-        linkedin.com/in/zane-leblanc/
-      </a>
-    </h3>
+  <script>
+    const phrases = ["software developer", "lifelong learner", "coffee addict"];
+    const el = document.getElementById('typing-el');
+    let pi = 0, ci = 0, deleting = false, wait = 0;
 
-    <h3>
-      <a href="https://github.com/ZaneLeBlanc" target="_blank" rel="noopener noreferrer">
-        github.com/ZaneLeBlanc
-      </a>
-    </h3>
-</div>
+    function type() {
+      const phrase = phrases[pi];
+      if (wait > 0) { wait--; setTimeout(type, 80); return; }
+      if (!deleting) {
+        el.innerHTML = phrase.slice(0, ++ci) + '<span class="cursor"></span>';
+        if (ci === phrase.length) { deleting = true; wait = 22; }
+        setTimeout(type, 90);
+      } else {
+        el.innerHTML = phrase.slice(0, --ci) + '<span class="cursor"></span>';
+        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; wait = 4; }
+        setTimeout(type, 45);
+      }
+    }
+    type();
+
+    function showProject(btn, id) {
+      const panel = document.getElementById('project-' + id);
+      const isOpen = panel.classList.contains('open');
+      document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('open'));
+      document.querySelectorAll('.project-btn').forEach(b => b.classList.remove('active'));
+      if (!isOpen) { panel.classList.add('open'); btn.classList.add('active'); }
+    }
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+
+    document.querySelectorAll('.project-images img').forEach(img => {
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modal.classList.add('open');
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modalImg.src = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    const photos = ['images/1.png', 'images/2.png', 'images/3.png'];
+    const photo = document.querySelector('.hero-photo');
+    let photoIdx = 0;
+
+    setInterval(() => {
+      photo.style.opacity = '0';
+      setTimeout(() => {
+        photoIdx = (photoIdx + 1) % photos.length;
+        photo.src = photos[photoIdx];
+        photo.style.opacity = '1';
+      }, 400);
+    }, 5000);
+  </script>
 </body>
+</html>

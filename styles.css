@@ -9,199 +9,219 @@ body {
   background-color: #faf5f6;
   color: #1a1a1a;
   min-height: 100vh;
-}
-
-header {
-  background-color: #ffe992;
-  border-bottom: 1px solid #d0cfc8;
-  height: auto;
-  padding: 20px 48px;
-}
-
-.menu {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  max-width: 860px;
-  margin: 0 auto;
-  width: 100%;
+  padding: 64px 24px 200px;
 }
 
-#indexLink {
-  font-size: 28px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  margin-left: 0;
-}
-
-.links {
-  display: flex;
-  gap: 28px;
-  margin: 0;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.headertext {
-  font-size: 14px;
-  color: #555;
-  margin-right: 0;
-}
-
-.headertext.active {
-  color: #1a1a1a;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* ── Links ── */
 a {
   text-decoration: none;
   color: #1a1a1a;
 }
-
 a:hover {
   color: #2c8012;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-/* ── Projects / Hobbies section ── */
-.hobbies {
-  display: flex;
-  flex-direction: column;
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 40px 48px 80px;
+/* ── Layout ── */
+.card {
+  width: 100%;
+  max-width: 720px;
 }
 
-.hobbies::before {
-  content: '// projects';
-  display: block;
-  font-size: 12px;
+.section { margin-bottom: 36px; }
+
+.section-label {
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #999;
-  margin-bottom: 24px;
-  padding-left: 48px;
+  margin-bottom: 16px;
 }
 
-.hobby {
+/* ── Hero ── */
+.hero {
   display: flex;
-  flex-direction: row;
-  gap: 28px;
-  padding: 28px 48px;
+  gap: 40px;
+  align-items: flex-start;
+  padding-bottom: 36px;
   border-bottom: 1px solid #e0dfd8;
-  margin: 0;
+  margin-bottom: 36px;
 }
 
-.hobby:last-child {
-  border-bottom: none;
+.hero-text { flex: 1; }
+
+.hero-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 10px;
 }
 
-.hobby img {
-  width: 160px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 4px;
-  box-shadow: none;
-  border: 1px solid #d0cfc8;
-  flex-shrink: 0;
-}
-
-.hobby-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: auto;
-  flex: 1;
-  margin-left: 0;
-  text-align: left;
-}
-
-h2 {
-  font-size: 18px;
+.hero-name {
+  font-size: 26px;
   font-weight: bold;
-  color: #1a1a1a;
-  margin-bottom: 8px;
-  letter-spacing: -0.3px;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
 }
 
-p {
-  font-family: 'Courier New', Courier, monospace;
+.hero-typing {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 16px;
+  min-height: 1.4em;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  background: #aaa;
+  margin-left: 1px;
+  vertical-align: middle;
+  animation: blink .75s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-bio {
   font-size: 13px;
   color: #555;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
-/* ── Footer ── */
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 52px;
-  background-color: #ffe992;
-  border-top: 1px solid #d0cfc8;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 12px;
-  color: #999;
+.hero-photo {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50px;
+  border: 1px solid #d0cfc8;
+  flex-shrink: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* ── Projects ── */
+.project-buttons {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-/* ── Utility / other pages ── */
-.page {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 50px 48px;
-  background-color: #faf5f6;
-}
-
-.homePage {
-  background-image: url('images/hiking.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  justify-content: space-around;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: #f0f2f5;
-  min-height: 100vh;
-}
-
-img {
-  border-radius: 4px;
-  box-shadow: none;
-}
-
-.experience {
-  margin-right: 50px;
-}
-
-/* ── Button (caffeine page etc.) ── */
-#incrementButton {
+.project-btn {
   border: 1px solid #c0bfb8;
-  padding: 10px 0;
+  padding: 8px 16px;
   color: #1a1a1a;
   background-color: #faf5f6;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
-  width: 200px;
-  margin-bottom: 5px;
+  font-size: 12px;
   border-radius: 3px;
   cursor: pointer;
 }
-
-#incrementButton:hover {
-  background-color: #eeeee8;
+.project-btn:hover { background-color: #eeeee8; }
+.project-btn.active {
+  background-color: #ffe992;
+  border-color: #b0afaa;
 }
 
-#buttonZone {
+.project-detail {
+  display: none;
+  padding: 20px 22px;
+  border: 1px solid #e0dfd8;
+  border-radius: 4px;
+}
+.project-detail.open { display: block; }
+
+.project-detail h2 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.project-detail p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.75;
+}
+
+.project-detail a {
+  font-size: 12px;
+  color:#2c8012;
+}
+
+.project-images {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.project-images img {
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.project-images img:hover { opacity: 0.8; }
+
+/* ── Lightbox ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
   justify-content: center;
   align-items: center;
+  z-index: 100;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* ── Fun facts ── */
+.facts-list {
+  list-style: none;
+  display: flex;
   flex-direction: column;
-  background-color: #faf5f6;
-  height: 750px;
+  gap: 8px;
+}
+
+.facts-list li {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.65;
+  padding-left: 18px;
+  position: relative;
+}
+
+.facts-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #bbb;
+}
+
+/* ── Contact ── */
+.contact {
+  padding-top: 28px;
+  border-top: 1px solid #e0dfd8;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  
+}
+
+.contact a {
+  font-size: 12px;
+  color:#2c8012;
 }
